@@ -17,7 +17,9 @@ public class ArinaFTest extends Base{
     @Test(priority = 1)//execute second
     public void secondTest() {
         getDriver().get("https://www.webstaurantstore.com/");
-        getDriver().findElement(By.id("searchval")).sendKeys("table\n"); ////input[@tabindex='2'] Byxpath
+
+        String text="table";
+        getDriver().findElement(By.id("searchval")).sendKeys(text+"\n"); ////input[@tabindex='2'] Byxpath
         getDriver().findElement(By.xpath("//button[@value='Search']")).click();
         List<WebElement> itemList = getDriver().findElements(By.xpath("//div[@id='details']/a[contains(@class,'block font')] "));
 
