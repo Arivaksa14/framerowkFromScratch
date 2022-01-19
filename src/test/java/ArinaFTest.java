@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ArinaFTest extends Base{
     @Test(priority = 0)//execute first
-    public void firstTest() {
+    public void logoDisplayedArinaF() {
         final String expectedLogoText = "Internet Brands";
         getDriver().get("https://www.internetbrands.com");
         WebElement logo = getDriver().findElement(By.xpath("//img[@alt='Internet Brands Logo']"));
@@ -15,26 +15,31 @@ public class ArinaFTest extends Base{
     }
 
     @Test(priority = 1)//execute second
-    public void secondTest() {
+    public void searchTextArinaF() {
         getDriver().get("https://www.webstaurantstore.com/");
 
-        String text="table";
+        final String text="table";
         getDriver().findElement(By.id("searchval")).sendKeys(text+"\n"); ////input[@tabindex='2'] Byxpath
+
         getDriver().findElement(By.xpath("//button[@value='Search']")).click();
+
         List<WebElement> itemList = getDriver().findElements(By.xpath("//div[@id='details']/a[contains(@class,'block font')] "));
 
 
         //Via css: #details >.block
         //Via data-testid: //div[@id='details']/a[@data-testid='itemDescription']
         //Via contains function: //div[@id='details']/a[contains(@class,'block')]
+
+        Assert.assertTrue(itemList.size()!=0);
+
         for (int i = 0; i < itemList.size(); i++) {
-            Assert.assertTrue(itemList.get(i).getText().toLowerCase().contains("table"));
+            Assert.assertTrue(itemList.get(i).getText().toLowerCase().contains(text));
         }
 
     }
 
     @Test(priority = 2)//execute last
-    public void textTest(){
+    public void checkLogoTextArinaF(){
         final String expectedLogoText = "VERTICALLY FOCUSED";
         getDriver().get("https://www.internetbrands.com");
         WebElement mainBanner = getDriver().findElement(By.className("main-title"));
