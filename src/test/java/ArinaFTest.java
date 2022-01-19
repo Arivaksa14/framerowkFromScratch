@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class projectTest extends Base{
+public class ArinaFTest extends Base{
     @Test(priority = 0)//execute first
     public void firstTest() {
         final String expectedLogoText = "Internet Brands";
